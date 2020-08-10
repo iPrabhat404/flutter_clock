@@ -1,4 +1,5 @@
 import 'package:clock_neum/utils/app_themes.dart';
+import 'package:clock_neum/widgets/clock_bg.dart';
 import 'package:clock_neum/widgets/custom_clock.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         alignment: Alignment.center,
         color: AppColors.colorPrimaryDark,
-        child: CustomClock(),
+        child: Stack(
+          children: [
+            CustomClockBg(),
+            CustomClock(),
+          ],
+        ),
       ),
     );
   }
