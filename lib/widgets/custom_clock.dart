@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:clock_neum/utils/app_themes.dart';
 import 'package:flutter/material.dart';
@@ -65,38 +66,51 @@ class CustomClockPainter extends CustomPainter {
     var center = Offset(centerX, centerY);
 
     var centerDotBrush = Paint()..color = Colors.white;
+    var centerSecDotBrush = Paint()..color = AppColors.colorAccent;
+    var centerSecUpDotBrush = Paint()..color = Colors.white;
+
+    var centerMinDotBrush = Paint()..color = AppColors.colorAccent;
+    var centerHourDotBrush = Paint()..color = AppColors.colorAccentDark;
 
     var secHandBrush = Paint()
-      ..color = AppColors.colorAccentLight
+      ..color = AppColors.colorAccent
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 4.0
+      ..strokeWidth = 3.0
       ..strokeCap = StrokeCap.round;
 
     var minHandBrush = Paint()
-      ..color = AppColors.colorAccent
+      ..color = AppColors.white
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 6.0
+      ..strokeWidth = 5.0
       ..strokeCap = StrokeCap.round;
 
     var hourHandBrush = Paint()
-      ..color = AppColors.colorAccentDark
+      ..color = AppColors.white
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 8.0
+      ..strokeWidth = 7.0
       ..strokeCap = StrokeCap.round;
 
-    var hourHandX = centerX + 60 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
-    var hourHandY = centerY + 60 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+    // canvas.drawCircle(center, 12, centerDotBrush);
+
+    var hourHandX = centerX + 50 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+    var hourHandY = centerY + 50 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     canvas.drawLine(center, Offset(hourHandX, hourHandY), hourHandBrush);
 
-    var minHandX = centerX + 70 * cos((dateTime.minute * 6 + dateTime.second * 0.1) * pi / 180);
-    var minHandY = centerY + 70 * sin((dateTime.minute * 6 + dateTime.second * 0.1) * pi / 180);
+    // canvas.drawCircle(center, 8, centerDotBrush);
+
+    var minHandX = centerX + 60 * cos((dateTime.minute * 6 + dateTime.second * 0.1) * pi / 180);
+    var minHandY = centerY + 60 * sin((dateTime.minute * 6 + dateTime.second * 0.1) * pi / 180);
     canvas.drawLine(center, Offset(minHandX, minHandY), minHandBrush);
 
-    var secHandX = centerX + 80 * cos(dateTime.second * 6 * pi / 180);
-    var secHandY = centerY + 80 * sin(dateTime.second * 6 * pi / 180);
+    canvas.drawCircle(center, 10, centerDotBrush);
+
+    var secHandX = centerX + 75 * cos(dateTime.second * 6 * pi / 180);
+    var secHandY = centerY + 75 * sin(dateTime.second * 6 * pi / 180);
     canvas.drawLine(center, Offset(secHandX, secHandY), secHandBrush);
 
-    canvas.drawCircle(center, 16, centerDotBrush);
+    canvas.drawCircle(center, 6, centerSecDotBrush);
+    canvas.drawCircle(center, 2, centerSecUpDotBrush);
+
     canvas.drawShadow(Path(), Colors.black, 12.0, true);
   }
 
