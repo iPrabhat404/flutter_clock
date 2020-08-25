@@ -69,9 +69,6 @@ class CustomClockPainter extends CustomPainter {
     var centerSecDotBrush = Paint()..color = AppColors.colorAccent;
     var centerSecUpDotBrush = Paint()..color = Colors.white;
 
-    var centerMinDotBrush = Paint()..color = AppColors.colorAccent;
-    var centerHourDotBrush = Paint()..color = AppColors.colorAccentDark;
-
     var secHandBrush = Paint()
       ..color = AppColors.colorAccent
       ..style = PaintingStyle.stroke
@@ -90,13 +87,13 @@ class CustomClockPainter extends CustomPainter {
       ..strokeWidth = 7.0
       ..strokeCap = StrokeCap.round;
 
-    // canvas.drawCircle(center, 12, centerDotBrush);
+
 
     var hourHandX = centerX + 50 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     var hourHandY = centerY + 50 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     canvas.drawLine(center, Offset(hourHandX, hourHandY), hourHandBrush);
 
-    // canvas.drawCircle(center, 8, centerDotBrush);
+   
 
     var minHandX = centerX + 60 * cos((dateTime.minute * 6 + dateTime.second * 0.1) * pi / 180);
     var minHandY = centerY + 60 * sin((dateTime.minute * 6 + dateTime.second * 0.1) * pi / 180);
